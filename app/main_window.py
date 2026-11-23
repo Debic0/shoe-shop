@@ -42,7 +42,7 @@ class ProductCard(QFrame):
 class MainWindow(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Чудо Обувь — каталог товаров")
+        self.setWindowTitle("Чудо Обувь — каталог моделей обуви")
         self.catalog_list = QListWidget()
         layout = QVBoxLayout(self)
         logo = QLabel()

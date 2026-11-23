@@ -32,6 +32,12 @@
 - `database/` — скрипт базы данных
 - `docs/` — ER-диаграмма
 
+## ER-диаграмма базы данных
+
+Диаграмма находится в файле `docs/er_diagram.pdf`. Основные таблицы: `product`, `stock_item`,
+`size`, `category`, `subcategory`, `manufacturer`, `app_user`, `role`, `customer_order`, `order_item`.
+Остаток хранится по сочетанию «модель + размер» (`stock_item`), заказ — в `customer_order` и `order_item`.
+
 ## Автор
 
 Никонов Александр, группа ПКС-33

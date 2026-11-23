@@ -56,7 +56,7 @@ class MainWindow(QWidget):
             connection = db.connect()
         except Exception as error:
             QMessageBox.critical(self, "Ошибка подключения",
-                                 f"Не удалось подключиться к базе данных: {error}")
+                                 f"Не удалось подключиться к базе данных: {error}. Проверьте, что PostgreSQL запущен и параметры в config.ini указаны верно.")
             return
         with connection:
             for row in db.fetch_catalog(connection):

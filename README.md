@@ -56,6 +56,42 @@
 
 Контейнер `db-check` обращается к базе по адресу `db:5432`, приложение на Windows — по `localhost:5433`.
 
+## Постоянное хранение и сети
+
+**Том.** Данные PostgreSQL хранятся в именованном томе `db_data` (в Docker он называется
+`<проект>_db_data`, например `shoe-shop_db_data`) и сохраняются при пересоздании контейнера `db`.
+Том не заменяет резервное копирование.
+
+**Резервная копия** (каталог `backups/` исключён из Git):
+
+```
+mkdir backups
+docker compose exec db pg_dump -U shoe_user -d shoe_store -f /tmp/shoe_store_before_volume.sql
+docker compose cp db:/tmp/shoe_store_before_volume.sql ./backups/shoe_store_before_volume.sql
+```
+
+**Восстановление** в новую пустую базу:
+
+```
+docker compose cp ./backups/shoe_store_before_volume.sql db:/tmp/restore.sql
+docker compose exec db psql -v ON_ERROR_STOP=1 -U shoe_user -d shoe_store -f /tmp/restore.sql
+```
+
+**Запуск и пересоздание:**
+
+```
+docker compose up --build -d
+docker compose up -d --force-recreate db
+docker compose ps
+```
+
+**Сеть и адреса.** Сервисы `db` и `db-check` работают в сети `shoe-backend`. Контейнер `db-check`
+подключается к `db:5432`, приложение на Windows — к `127.0.0.1:5433` (порт опубликован только на
+локальном интерфейсе).
+
+**Предупреждение.** Команды `docker compose down -v` и `docker volume prune` удаляют тома и данные БД.
+Не выполняйте их без резервной копии.
+
 ## Автор
 
 Никонов Александр, группа ПКС-33

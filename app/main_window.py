@@ -46,7 +46,7 @@ class MainWindow(QWidget):
         self.catalog_list = QListWidget()
         layout = QVBoxLayout(self)
         logo = QLabel()
-        logo.setPixmap(QPixmap(str(RESOURCES / "logo.png")))
+        logo.setPixmap(QPixmap(str(RESOURCES / "logo.png")).scaledToHeight(90))
         layout.addWidget(logo)
         layout.addWidget(self.catalog_list)
         self.load_catalog()

@@ -1,8 +1,9 @@
 """Чтение параметров подключения к базе данных из config.ini."""
 import configparser
-from pathlib import Path
 
-CONFIG_PATH = Path(__file__).resolve().parent.parent / "config.ini"
+from app.paths import app_dir
+
+CONFIG_PATH = app_dir() / "config.ini"
 
 
 def load_database_settings():

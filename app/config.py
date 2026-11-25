@@ -8,7 +8,7 @@ CONFIG_PATH = app_dir() / "config.ini"
 
 def load_database_settings():
     parser = configparser.ConfigParser()
-    if not parser.read(CONFIG_PATH, encoding="utf-8"):
+    if not parser.read(CONFIG_PATH, encoding="utf-8-sig"):
         raise FileNotFoundError(f"Не найден файл настроек {CONFIG_PATH}. Скопируйте config.ini.example в config.ini")
     section = parser["database"]
     return {

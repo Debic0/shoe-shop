@@ -1,15 +1,14 @@
 """Главное окно: каталог товаров."""
-from pathlib import Path
-
 from PyQt5.QtGui import QColor, QFont, QPixmap
 from PyQt5.QtWidgets import (QFrame, QHBoxLayout, QLabel, QListWidget,
                              QListWidgetItem, QMessageBox, QVBoxLayout, QWidget)
 
 from app import db
+from app.paths import bundle_dir
 from app.pricing import calculate_price
 from app.stock import get_stock_label, is_low_stock
 
-RESOURCES = Path(__file__).resolve().parent.parent / "resources"
+RESOURCES = bundle_dir() / "resources"
 LOW_STOCK_COLOR = "#ff8080"
 ADDITIONAL_BACKGROUND = "#D2F6E7"
 

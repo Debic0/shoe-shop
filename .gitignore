@@ -17,3 +17,7 @@ config.ini
 *.log
 # Резервные копии базы данных
 backups/
+# Комплект поставки и результаты сборки (ПЗ-14)
+ShoeStore-release/
+ShoeStore-release.zip
+ShoeStore-Archive-Test/
